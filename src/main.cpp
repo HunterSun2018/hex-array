@@ -33,9 +33,9 @@ int main(int argc, const char *argv[])
 void print_hex(string_view file_name)
 {
     ifstream ifs(file_name.data());
-    istreambuf_iterator<char> beg(ifs), eos;
+    istreambuf_iterator<char> bof(ifs), eof;
 
-    for_each(beg, eos, [](char c) {
+    for_each(bof, eof, [](char c) {
         //cout << "0x" << std::setfill('0') << std::setw(2) << std::hex << (int)(uint8_t)c << ", ";
         cout << (int)(uint8_t)c << ", ";
     });
