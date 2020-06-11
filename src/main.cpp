@@ -32,12 +32,13 @@ int main(int argc, const char *argv[])
 
 void print_hex(string_view file_name)
 {
-    ifstream ifs(file_name.data(), ios_base::binary);
+    ifstream ifs(file_name.data());
+    istreambuf_iterator<char> beg(ifs), eos;
 
-    for_each(istreambuf_iterator<char>(ifs),
-             istreambuf_iterator<char>(), [](char c) {
-                 cout << "0x" << std::setfill('0') << std::setw(2) << std::hex << (int)(uint8_t)c << ", ";
-             });
-    
+    for_each(beg, eos, [](char c) {
+        //cout << "0x" << std::setfill('0') << std::setw(2) << std::hex << (int)(uint8_t)c << ", ";
+        cout << (int)(uint8_t)c << ", ";
+    });
+
     cout << endl;
 }
